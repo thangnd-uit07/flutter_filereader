@@ -10,13 +10,18 @@ class FileReaderView extends StatefulWidget {
   final Function(bool) openSuccess;
   final Widget loadingWidget;
   final Widget unSupportFileWidget;
+  final Widget fileNotFoundWidget;
+  final Widget enginLoadFailedWidget;
 
   FileReaderView(
       {Key key,
       this.filePath,
       this.openSuccess,
       this.loadingWidget,
-      this.unSupportFileWidget})
+      this.unSupportFileWidget,
+      this.fileNotFoundWidget,
+      this.enginLoadFailedWidget
+    })
       : super(key: key);
 
   @override
@@ -78,29 +83,20 @@ class _FileReaderViewState extends State<FileReaderView> {
         return _loadingWidget();
       }
     } else {
-      return Center(child: Text("不支持的平台"));
+      return Container();
     }
   }
 
   Widget _unSupportFile() {
-    return widget.unSupportFileWidget ??
-        Center(
-          child: Text("不支持打开${_fileType(filePath)}类型的文件"),
-        );
+    return widget.unSupportFileWidget;
   }
 
   Widget _fileNotFoundFile() {
-    return Center(
-      child: Text("文件不存在"),
-    );
+    return widget.fileNotFoundWidget;
   }
 
   Widget _enginLoadFail() {
-    //最有可能是abi的问题
-    //还有可能第一次下载成功,但是加载不成功
-    return Center(
-      child: Text("引擎加载失败,请退出重试"),
-    );
+    return widget.enginLoadFailedWidget;
   }
 
   Widget _loadingWidget() {
