@@ -100,10 +100,7 @@ class _FileReaderViewState extends State<FileReaderView> {
   }
 
   Widget _loadingWidget() {
-    return widget.loadingWidget ??
-        Center(
-          child: CupertinoActivityIndicator(),
-        );
+    return widget.loadingWidget;
   }
 
   Widget _createAndroidView() {
