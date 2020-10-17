@@ -66,37 +66,23 @@ class _FileReaderViewState extends State<FileReaderView> {
   Widget build(BuildContext context) {
     if (Platform.isAndroid || Platform.isIOS) {
       if (_status == FileReaderState.LOADING_ENGINE) {
-        print('>>> log....');
-        print('LOADING....');
         return _loadingWidget();
       } else if (_status == FileReaderState.UNSUPPORT_FILE) {
-        print('>>> log....');
-        print('11111');
         return _unSupportFile();
       } else if (_status == FileReaderState.ENGINE_LOAD_SUCCESS) {
-        print('>>> log....');
-        print('22222');
         if (Platform.isAndroid) {
           return _createAndroidView();
         } else {
           return _createIosView();
         }
       } else if (_status == FileReaderState.ENGINE_LOAD_FAIL) {
-        print('>>> log....');
-        print('3333');
         return _enginLoadFail();
       } else if (_status == FileReaderState.FILE_NOT_FOUND) {
-        print('>>> log....');
-        print('444');
         return _fileNotFoundFile();
       } else {
-        print('>>> log....');
-        print('LOADING....');
         return _loadingWidget();
       }
     } else {
-      print('>>> log....');
-      print('Container');
       return Container();
     }
   }
